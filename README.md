@@ -2,11 +2,7 @@
 
 UFMA is a temporal video understanding and automatic evaluation project built around a unified `ufma/` codebase. The repository includes training, inference, and evaluation pipelines, with the optimized automatic inference workflow already integrated into `ufma/eval/infer_auto.py`.
 
-
-
-
-
-![](C:\Users\Alfred\Desktop\UFMA\assets\architect.png)
+![](.\assets\architect.png)
 
 ## Overview
 
