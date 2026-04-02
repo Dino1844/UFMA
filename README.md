@@ -1,39 +1,46 @@
-# UFMA
+# 🎬 UFMA
 
-UFMA is a temporal video understanding and automatic evaluation project built around a unified `ufma/` codebase. The repository includes training, inference, and evaluation pipelines, with the optimized automatic inference workflow already integrated into `ufma/eval/infer_auto.py`.
+UFMA is a temporal video understanding and automatic evaluation project built around a unified `ufma/` codebase. This repository brings training, inference, and evaluation workflows together in one place, with the optimized automatic inference pipeline already integrated into `ufma/eval/infer_auto.py`.
 
-![](.\assets\architect.png)
+![UFMA architecture](./assets/architect.png)
 
-## Overview
+## ✨ Highlights
 
-- The main package path is `ufma/`.
-- Training, evaluation, and inference scripts have all been updated to use the `ufma` module name.
-- The automatic inference pipeline already includes the optimized checker ranking and refinement logic.
-- The repository now supports both `Qwen2-VL` and `Qwen2.5-VL`, including a dedicated `Qwen2.5-VL-3B` script set.
-- The repository license is provided in `LICENSE`.
+- 🧩 Unified project layout for training, inference, and evaluation
+- ⚡ Optimized automatic inference pipeline with checker ranking and refinement logic
+- 🤖 Support for both `Qwen2-VL` and `Qwen2.5-VL`
+- 📦 Ready-to-run script sets for pretraining, finetuning, and evaluation
+- 🛠️ Dedicated `Qwen2.5-VL-3B` script support
 
-## Repository Layout
+## 📁 Repository Layout
 
 ```text
 UFMA/
-|-- ufma/                    # Core package
-|   |-- eval/                # Inference and evaluation
-|   |-- model/               # Model definitions and builders
+|-- assets/                  # Figures used in the documentation
+|-- scripts/
+|   |-- evaluation/          # Evaluation entry scripts
+|   |-- finetune/            # Finetuning scripts
+|   `-- pretrain/            # Pretraining scripts
+|-- ufma/
 |   |-- dataset/             # Dataset wrappers and utilities
-|   `-- train/               # Training entrypoints
-|-- scripts/                 # Training and evaluation scripts
-|-- ufma_optim.py            # Thin wrapper for the optimized auto-inference entry
+|   |-- eval/                # Inference and evaluation logic
+|   |-- model/               # Model definitions and builders
+|   |-- train/               # Training entrypoints
+|   `-- utils/               # Shared utilities
 |-- requirements.txt
+|-- setup.cfg
 `-- LICENSE
 ```
 
-## Installation
+## 🚀 Installation
+
+Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-`Qwen2.5-VL` support requires the `transformers` version pinned in `requirements.txt`.
+`Qwen2.5-VL` support depends on the `transformers==4.50.0` version pinned in `requirements.txt`.
 
 Recommended environment setup:
 
@@ -47,7 +54,7 @@ For Windows PowerShell:
 $env:PYTHONPATH = ".;$env:PYTHONPATH"
 ```
 
-## Inference and Evaluation
+## 🧪 Inference & Evaluation
 
 Run automatic inference directly:
 
@@ -61,7 +68,7 @@ python ufma/eval/infer_auto.py \
   --model_pla_path <planner_model_dir>
 ```
 
-You can also use the provided scripts:
+You can also use the provided evaluation scripts:
 
 ```bash
 bash scripts/evaluation/eval_auto_7b.sh <dataset_name> test
@@ -69,7 +76,7 @@ bash scripts/evaluation/eval_auto_2b.sh <dataset_name> test
 bash scripts/evaluation/eval_auto_25_3b.sh <dataset_name> test
 ```
 
-The optimized `infer_auto.py` pipeline supports the following control arguments:
+The optimized `infer_auto.py` pipeline supports a set of control arguments for checker-stage ranking, uncertainty estimation, and coordinate descent refinement, including:
 
 - `--checker_topk`
 - `--obj_lambda`
@@ -81,11 +88,9 @@ The optimized `infer_auto.py` pipeline supports the following control arguments:
 - `--uncert_disagree_thr`
 - `--active_dense_ratio`
 
-These options are used for checker-stage coarse ranking, uncertainty estimation, and coordinate descent refinement.
+## 🏋️ Training
 
-## Training
-
-Example script entrypoints:
+Example pretraining entrypoints:
 
 ```bash
 bash scripts/pretrain/pretrain_grounder_2b.sh
@@ -96,7 +101,7 @@ bash scripts/pretrain/pretrain_planner_25_3b.sh
 bash scripts/pretrain/pretrain_checker_25_3b.sh
 ```
 
-Fine-tuning examples:
+Example finetuning scripts:
 
 ```bash
 bash scripts/finetune/finetune_qvhighlights_2b.sh
@@ -104,11 +109,12 @@ bash scripts/finetune/finetune_qvhighlights_7b.sh
 bash scripts/finetune/finetune_qvhighlights_25_3b.sh
 ```
 
-## License
+## 📌 Notes
 
-Please refer to `LICENSE` for the full license text and redistribution terms.
-We retain the original BSD license even though we have made substantial modifications to the original codebase.
+- 📜 The repository license is provided in `LICENSE`
+- 🔁 The project retains the original BSD license while incorporating substantial modifications
+- 🙌 The codebase is built on top of VideoMind
 
-## Acknowledgement
+## 🙏 Acknowledgement
 
 Thanks to VideoMind for providing the high-quality base code.
